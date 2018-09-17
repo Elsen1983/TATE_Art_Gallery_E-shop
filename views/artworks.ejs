@@ -1,0 +1,32 @@
+<!-- Includes another template -->
+<% include head.ejs %>
+<div style="font-size: 1.5em; text-align: center;" >
+    <p style="font-size: 1.2em;  padding-top: 6em;">Random Artworks Gallery</p>
+</div>
+<ul style="border: darkgray 5px solid; width: 90%; margin: auto;padding-bottom: 3em; background-color: #111;">
+
+    <!-- loops over each article and renders it -->
+    <% artwork.forEach((artwork) => { %>
+
+    <li style="color:white; font-weight:bold; margin-top: 2em; margin-left: 2em; width: 90%;">
+            <!-- Includes the article's title,year..etc as the link text -->
+            <img src="<%= artwork.thumbnailUrl %>"
+                 style="float: left; padding: 2em; margin: 1em; border: darkgray 2px solid;">
+            <div style="padding-left: 20em; margin-top:5em; text-align: left; font-weight: bold;">
+                <p>Title:  <%= artwork.title %></p>
+                <p>Artist: <%= artwork.artist %></p>
+                <p>Year:   <%= artwork.year %></p>
+                <p>Price:  <%= artwork.price %> Euro</p>
+            </div>
+
+    </li>
+
+    <form>
+        <button formaction="/artworks/<%= artwork.id %>" style="float: left; font-weight: bold;
+                margin-left: 3em; width: inherit; padding-left:1em; padding-right: 1em;">Order Art</button>
+    </form>
+    <p> </p>
+    <p> </p>
+    <% }) %>
+</ul>
+<% include foot %>

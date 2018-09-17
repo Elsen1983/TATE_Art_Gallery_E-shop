@@ -1,0 +1,31 @@
+<% include head %>
+<article>
+    <div style="font-size: 1.5em; text-align: center;" >
+        <p style="font-size: 1.2em; padding-top: 6em;">Welcome on Tate, take the time to look around on our site!</p>
+    </div>
+    <!-- displays the image details -->
+    <div id="container"
+         style="background-color: #111;
+                border: darkgray 5px solid;
+                width: 80%;
+                height: 550px;
+                margin: auto;
+                padding: 1em;
+                object-fit: cover;
+
+    ">
+        <div>
+        <img id="homeImg" src="<%= artwork.thumbnailUrl %>"
+             style="width: 650px; border: white 2px solid">
+        </div>
+        <div style="position:absolute;color: white; padding-left: 15em; font-weight: bold; bottom: -6.5em;">
+            <h3>"<%= artwork.title %>"</h3>
+        </div>
+
+
+    </div>
+
+
+</article>
+
+<% include foot %>

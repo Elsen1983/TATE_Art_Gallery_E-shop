@@ -1,0 +1,20 @@
+{
+  "name": "serverside_restful_app",
+  "version": "1.0.0",
+  "description": "Server Side Project 2017",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Norbert Korom",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "node-readability": "^3.0.0",
+    "sqlite": "^2.9.0",
+    "sqlite3": "^3.1.13"
+  }
+}

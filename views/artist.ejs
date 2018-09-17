@@ -1,0 +1,19 @@
+<% include head %>
+<article>
+    <div style="font-size: 1.5em; text-align: center;" >
+        <p style="font-size: 1.2em;  padding-top: 6em;">Details of Artist</p>
+    </div>
+
+    <ul style="border: darkgray 5px solid; width: 90%; margin: auto;padding-bottom: 3em; background-color: #111;">
+                <div style="color: white; font-weight: bold; margin:auto; width: 40%;">
+                    <h5>______________________________________________</h5>
+                    <h3><%= artists.name %></h3>
+                    <h5><%= artists.date %></h5>
+                    <h5><%= artists.gender %></h5>
+                    <h5><a href="<%= artists.url %>"> <%= artists.url %> </a></h5>
+                    <h5>______________________________________________</h5>
+                </div>
+    </ul>
+
+</article>
+<% include foot %>

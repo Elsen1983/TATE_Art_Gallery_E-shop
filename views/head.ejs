@@ -1,0 +1,305 @@
+<html>
+<head>
+    <title>Tate</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+    <script>
+     //loadCookies();
+
+     //start cookies
+    var myCookies ={};
+    //save cookies
+    function saveCookies() {
+        myCookies["_shopCartItemsNumber"] = parseFloat(document.getElementById('numItems').innerHTML);
+        myCookies["_shopCartItemsPrice"] = parseFloat(document.getElementById('priceItems').innerHTML);
+        document.cookie = "";
+        var expiresAttribute = new Date(Date.now() + 60 * 1000).toString();
+        var cookieString = "";
+        for (var key in myCookies) {
+            cookieString = key + "=" + myCookies[key] + ";" + expiresAttribute + ";";
+            document.cookie = cookieString;
+        }
+
+        //for test
+        //document.getElementById("outcookies").innerHTML = document.cookie;
+    }
+        //load cookies
+        function loadCookies(){
+            myCookies = {};
+            //key value pair
+            var kvp = document.cookie.split(";");
+            for(var id in kvp){
+                var cookie = kvp[id].split("=");
+                myCookies[cookie[0].trim()] = cookie[1];
+            }//end reusable code
+            var numI = parseFloat(document.getElementById('numItems').innerHTML);
+            var prI = parseFloat(document.getElementById('priceItems').innerHTML);
+            numI = myCookies["_shopCartItemsNumber"];
+            prI = myCookies["_shopCartItemsPrice"];
+        }
+
+        //clear Cookies -- overwrite them
+        function clearCookies() {
+
+        }
+    //show
+    function showMenu() {
+        document.getElementById("listMenuDiv").style.display ="block";
+        loadCookies();
+        document.getElementById("menuDivImg").removeEventListener("click", showMenu);
+        document.getElementById("menuDivImg").addEventListener("click", hideMenu);
+    }
+    //hide
+    function hideMenu() {
+        document.getElementById("listMenuDiv").style.display = "none";
+        document.getElementById("menuDivImg").removeEventListener("click", hideMenu);
+        document.getElementById("menuDivImg").addEventListener("click", showMenu);
+    }
+
+    // --------- ARTWORK SCRIPTS ------
+
+     var i = 0;
+     function incrementValue() {
+         if(document.getElementById('number').value<10){
+             i++;
+             document.getElementById('number').value = i;
+         }
+     }
+     function decrementValue() {
+         if(document.getElementById('number').value > 0){
+             i--;
+             document.getElementById('number').value = i;
+         }
+     }
+     function addtoCart() {
+         //SHOW SHOPPING CART
+         showMenu();
+         //CHANGE THE ITEMS AND PRICE IN SHOPPING CART
+         //NUMBER OF ITEMS
+         //variable = parsed innerHTML from cart NumberOfItems
+         var multPrice = parseFloat(document.getElementById('numItems').innerHTML);
+         //itt will equal by same variable and add the quantity from incremented(by button +/-) value
+         multPrice = multPrice + i;
+         document.getElementById('numItems').innerHTML = multPrice;
+         //PRICE OF ITEMS
+         //price of the current Item
+         var priceOfItem = parseFloat(document.getElementById('priceget').innerHTML);
+         //value of total price in Cart
+         var priceInCart = parseFloat(document.getElementById('priceItems').innerHTML);
+         //current item price = current item price * how many item will ordered
+         priceOfItem = priceOfItem * multPrice;
+         //price in cart = current all price
+         priceInCart = priceOfItem;
+         document.getElementById('priceItems').innerHTML = priceInCart;
+         //SAVE ITEMS AND PRICE VALUE INTO COOKIE
+         saveCookies();
+     }
+    </script>
+    <style>
+        body{
+            background-color: white;
+            width: 90%;
+            margin: auto;
+        }
+        #menuDiv img{
+            padding-top: 1em;
+            padding-right: 1em;
+            width: 40px;
+            height: 40px;
+            float: right;
+            cursor: pointer;
+        }
+        #listMenuDiv{
+            display: none;
+            position: fixed;
+            z-index: 1;
+            width: inherit;
+            max-width: 200px;
+            text-align: left;
+            height: 200px;
+            right: 10%;
+            top: 2.5em;
+            padding: 0.75em;
+            margin-top: 1em;
+            line-height: 2em;
+            color: white;
+            background-color: black;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: 1px solid white;
+            border-radius: 0.2em;
+        }
+        #listMenuDiv ul{
+            width: 177px;
+            height: 177px;
+        }
+        #listMenuDiv li{
+            width: 100%;
+        }
+        #navy{
+            position: fixed;
+            top: 0;
+            background-color: white;
+            width: 90%;
+            margin: auto;
+        }
+        #tateImg{
+              width: 15%;
+              float: left;
+        }
+        h1{
+            margin: 0;
+            text-align: left;
+            float: left;
+            padding: 0.3em;
+        }
+        #loginButton{
+            position: relative;
+            float: right;
+            margin-top: 1.5em;
+
+            width: 6em;
+        }
+        #menuHolder{
+            clear: both;
+            margin: 0;
+            padding: 0;
+            font-size: 1em;
+        }
+        #menuHolder form{
+            margin-bottom: 0;
+            text-align: center;
+        }
+        #searchfield{
+            display: block;
+            color: white;
+            text-align: center;
+            padding-top: 14px;
+            padding-right: 5px;
+            float: right;
+        }
+        #menuHolder input{
+            color: black;
+            font-weight: bold;
+        }
+        #menu{
+            border: darkgray 5px solid;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        li {
+            float: left;
+        }
+        li:last-child {
+        }
+        #menu li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 17px 30px;
+            text-decoration: none;
+        }
+        #menu li a:hover:not(.active) {
+            background-color: #111;
+        }
+        .active {
+            background-color: #4CAF50;
+        }
+        @media screen and (min-width: 900px){
+            body{
+                width: 900px;
+                margin: auto;
+            }
+            #navy{
+                width: 900px;
+                margin: auto;
+            }
+            .container{
+                width: 900px;
+            }
+        }
+        @media screen and (max-width: 899px){
+            body{
+                width: 899px;
+                margin: auto;
+            }
+            #navy{
+                width: 900px;
+                margin: auto;
+            }
+            .container{
+                width: 899px;
+                margin: auto;
+            }
+        }
+    </style>
+    <nav id="navy">
+    <div >
+        <img id="tateImg" typeof="foaf:Image" itemprop="logo" src="https://storage.googleapis.com/tate-digital/ui/2.1-compressed/static/images/tate-logo.png" alt="Tate">
+    </div>
+    <div>
+        <h1 style="font-family: 'Shadows Into Light', cursive;">" A  WORK  OF  ART  EVERY  DAY "</h1>
+        <button id="loginButton">Login</button>
+            <div id="menuDiv ">
+                <img style="padding-top: 1em;
+                            padding-right: 1em;
+                            width: 50px;
+                            height: 45px;
+                            float: right;
+                            cursor: pointer;"
+                     id="menuDivImg"
+                     src="http://icons.veryicon.com/png/System/Android%201/Shopping%20shopping%20cart.png"
+                     alt="shoppingcart image"
+                     onclick="showMenu()">
+            </div>
+        <div id="listMenuDiv">
+            <ul style="text-align: left; padding-left: 0.5em; border: white 1px dashed;">
+                <li>
+                    Shopping cart
+                </li>
+                <li>
+                    ====================
+                </li>
+                <li>
+                    Number of items: <span id="numItems">0</span>
+                </li>
+                <li>
+                    Price of items : €<span id="priceItems">0</span>
+                </li>
+                <li>
+                    <button id="payBtn"
+                           style="color: #111111; margin-top: 1em; width: 77px; padding: 0.1em;">Pay</button>
+                    <button id="clearPayBtn" onclick="clearCookies()"
+                            style="color: #111111; margin-top: 1em; width: 77px; padding: 0.1em;">Clear</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="menuHolder">
+        <ul id="menu">
+            <li><a onclick="" class="active" href="/">Home</a></li>
+            <li><a onclick="" href="/artists">Artists</a></li>
+            <li><a onclick="" href="/artworks">Random Art</a></li>
+            <li><a onclick="" href="#contact">Contact</a></li>
+            <li><a onclick="loadCookies()" href="#about">About</a></li>
+            <li id="searchfield">
+                <form action="/searchresult">
+                    <input type="search" name="search in database">
+                    <input type="submit">
+                </form>
+            </li>
+           <!-- <p id="outcookies"></p> -->
+        </ul>
+    </div>
+    </nav>
+    </div>
+    </div>
+</head>
+<body>
+<div class="container">

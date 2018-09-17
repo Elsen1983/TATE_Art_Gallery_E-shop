@@ -1,0 +1,45 @@
+<% include head %>
+<article>
+    <div style="font-size: 1.5em; text-align: center;" >
+        <p style="font-size: 1.2em; padding-top: 6em;">Selected art details</p>
+    </div>
+    <!-- displays the image details -->
+    <div id="artDiv"
+         style="background-color: #111;
+                border: darkgray 5px solid;
+                width: 80%;
+                height: 70%;
+                margin: auto;
+                padding: 1em;
+
+    ">
+        <img src="<%= artwork.thumbnailUrl %>"
+             style="float: left; padding: 2em; margin: 1em; border: darkgray 2px solid;">
+        <div style="color: white; padding-left: 20em; margin-top:1em; text-align: left; font-weight: bold;">
+            <h3>"<%= artwork.title %>"</h3>
+            <h5>Artist: <%= artwork.artist %></h5>
+            <h5>Year:   <%= artwork.year %></h5>
+            <h5>Size:  <%= artwork.width %>mm X <%= artwork.height %>mm</h5>
+            <h5 >Price:  €<span id="priceget"><%= artwork.price %></span> </h5>
+            <h5>__________________________________</h5>
+            <div style="float: left; width: inherit; padding-right: 1em; color: #111111;">
+                <form >
+                    <script>
+
+                    </script>
+                    <input min="0" type="number" id="number" value="0" style="width: 3.1em;"/>
+                    <input type="button" onclick="incrementValue()" value=" + " />
+                    <input type="button" onclick="decrementValue()" value=" - " />
+                </form>
+            </div>
+            <div>
+                <button id="addtoCart" onclick="addtoCart()" style="float: left; width: inherit;padding-left:1em; padding-right: 1em;color: #111111;">Add to Order</button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</article>
+<% include foot %>
